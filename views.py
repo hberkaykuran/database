@@ -67,24 +67,27 @@ def about():
 
 @app.route('/register',methods=['GET','POST'])
 def register():
-    db = Database()
-    """Renders the contact page."""
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        fn = secure_filename(str(uuid.uuid4()))
-        print(fn)
-        filename = photos.save(form.profilePicture.data, name = fn+".")
-        #file_url = photos.url(filename)
-        print(filename)
-        user=User(form.username.data,generate_password_hash(form.password.data),form.age.data,form.sex.data,form.location.data , form.email.data , form.summary , filename , form.isModerator.data )
-        db.user_add(user)
-        flash(f'Account created for {form.username.data}!','success')
-        return redirect(url_for('logout'))
-    return render_template(
-        'register.html',
-        title='Register',
-        form=form,
-    )
+    if session.get('username',None) != None:
+        return redirect(url_for('home'))
+    else:
+        db = Database()
+        """Renders the contact page."""
+        form = RegistrationForm()
+        if form.validate_on_submit():
+            fn = secure_filename(str(uuid.uuid4()))
+            print(fn)
+            filename = photos.save(form.profilePicture.data, name = fn+".")
+            #file_url = photos.url(filename)
+            print(filename)
+            user=User(form.username.data,generate_password_hash(form.password.data),form.age.data,form.sex.data,form.location.data , form.email.data , form.summary , filename , form.isModerator.data )
+            db.user_add(user)
+            flash(f'Account created for {form.username.data}!','success')
+            return redirect(url_for('logout'))
+        return render_template(
+            'register.html',
+            title='Register',
+            form=form,
+        )
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
