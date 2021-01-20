@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="content-section">
+    <form method="POST" action="">
+        {{form.hidden_tag()}}
+        <fieldset class="form-group">
+            <div class="form-group" style="float:left;margin-left:15px">
+                {{ form.search.label(class="form-control-label," , style="float:left;margin-left:15px") }}
+                {% if form.search.errors %}
+                {{ form.search(class="form-control form-control-lg is-invalid") }}
+                <div class="input-validation-error">
+                    {% for error in form.search.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.search(class="form-control form-control-lg",style="float:left;margin-left:15px") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="float:left;margin-left:15px">
+                {{ form.choice.label(class="form-control-label",style="float:left;margin-left:15px") }}
+                {% if form.choice.errors %}
+                {{ form.choice(class="form-control form-control-lg is-invalid") }}
+                <div class="input-validation-error">
+                    {% for error in form.choice.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.choice(class="form-control form-control-lg",style="float:left;margin-left:15px") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="float:left;margin-left:15px">
+                {{ form.choice_museum.label(class="form-control-label" ,id="museum_label",style="float:left;margin-left:15px") }}
+                {% if form.choice_museum.errors %}
+                {{ form.choice_museum(class="form-control form-control-lg is-invalid ") }}
+                <div class="input-validation-error">
+                    {% for error in form.choice_museum.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.choice_museum(class="form-control form-control-lg",style="float:left;margin-left:15px") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="float:left">
+                {{ form.choice_artist.label(class="form-control-label" ,id="artist_label",style="display: none;float:left;margin-left:15px") }}
+                {% if form.choice_artist.errors %}
+                {{ form.choice_artist(class="form-control form-control-lg is-invalid") }}
+                <div class="input-validation-error">
+                    {% for error in form.choice_artist.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.choice_artist(class="form-control form-control-lg",style="display: none;float:left;margin-left:15px") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="float:left">
+                {{ form.choice_artpiece.label(class="form-control-label" ,id="artpiece_label",style="display: none;float:left;margin-left:15px") }}
+                {% if form.choice_artpiece.errors %}
+                {{ form.choice_artpiece(class="form-control form-control-lg is-invalid") }}
+                <div class="input-validation-error">
+                    {% for error in form.choice_artpiece.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.choice_artpiece(class="form-control form-control-lg",style="display: none;float:left;margin-left:15px") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="float:left">
+                {{ form.choice_user.label(class="form-control-label" ,id="user_label",style="display: none;float:left;margin-left:15px") }}
+                {% if form.choice_user.errors %}
+                {{ form.choice_user(class="form-control form-control-lg is-invalid") }}
+                <div class="input-validation-error">
+                    {% for error in form.choice_user.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.choice_user(class="form-control form-control-lg",style="display: none;float:left;margin-left:15px") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="float:left">
+                {{form.submit(class="btn",style="float:left;margin-left:15px")}}
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script>
+    function myFunction() {
+        let ch = document.getElementById("choice").value;
+        if (ch === "museum") {
+            document.getElementById("choice_museum").style.display = "initial"
+            document.getElementById("museum_label").style.display = "initial"
+            document.getElementById("choice_artist").style.display = "none"
+            document.getElementById("artist_label").style.display = "none"
+            document.getElementById("choice_artpiece").style.display = "none"
+            document.getElementById("artpiece_label").style.display = "none"
+            document.getElementById("choice_user").style.display = "none"
+            document.getElementById("user_label").style.display = "none"
+        } else if (ch === "artist") {
+            document.getElementById("choice_museum").style.display = "none"
+            document.getElementById("museum_label").style.display = "none"
+            document.getElementById("choice_artist").style.display = "initial"
+            document.getElementById("artist_label").style.display = "initial"
+            document.getElementById("choice_artpiece").style.display = "none"
+            document.getElementById("artpiece_label").style.display = "none"
+            document.getElementById("choice_user").style.display = "none"
+            document.getElementById("user_label").style.display = "none"
+        } else if (ch === "artpiece") {
+            document.getElementById("choice_museum").style.display = "none"
+            document.getElementById("museum_label").style.display = "none"
+            document.getElementById("choice_artist").style.display = "none"
+            document.getElementById("artist_label").style.display = "none"
+            document.getElementById("choice_artpiece").style.display = "initial"
+            document.getElementById("artpiece_label").style.display = "initial"
+            document.getElementById("choice_user").style.display = "none"
+            document.getElementById("user_label").style.display = "none"
+        } else if (ch === "\"USER\"") {
+            document.getElementById("choice_museum").style.display = "none"
+            document.getElementById("museum_label").style.display = "none"
+            document.getElementById("choice_artist").style.display = "none"
+            document.getElementById("artist_label").style.display = "none"
+            document.getElementById("choice_artpiece").style.display = "none"
+            document.getElementById("artpiece_label").style.display = "none"
+            document.getElementById("choice_user").style.display = "initial"
+            document.getElementById("user_label").style.display = "initial"
+        } else {
+            document.getElementById("choice_museum").style.display = "none"
+            document.getElementById("museum_label").style.display = "none"
+            document.getElementById("choice_artist").style.display = "none"
+            document.getElementById("artist_label").style.display = "none"
+            document.getElementById("choice_artpiece").style.display = "none"
+            document.getElementById("artpiece_label").style.display = "none"
+            document.getElementById("choice_user").style.display = "none"
+            document.getElementById("user_label").style.display = "none"
+        }
+    }
+</script>
+{% endblock content %}
+

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+<!-- username   age     sex     location    summary     profilePicture      isModerator -->
+{% block content %}
+
+    <container style="float:right;margin-right:15px">
+        <img src="{{ url_for('upload', filename=info[5]) }}" style="width:500px;height:600px;" />
+    </container>
+    
+{% endblock content %}
