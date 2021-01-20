@@ -28,7 +28,7 @@ import hashlib
 UPLOAD_FOLDER = '/static/img'
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 
-#app=Flask(__name__, static_url_path='/static')
+app=Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'af65ae4e13b08a4eef049756b4259621'
 app.config['BASE_DIR'] = os.path.dirname(__file__)
 app.config['UPLOADED_PHOTOS_DEST'] = app.config['BASE_DIR'] + UPLOAD_FOLDER
